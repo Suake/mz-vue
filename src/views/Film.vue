@@ -8,6 +8,7 @@
           <li><router-link to="/detail/300">家和万世惊</router-link></li>
         </ul>
         <button @click="goCity">City</button>
+        <div style="height:2000px"></div>
     </div>
 </template>
 
