@@ -61,6 +61,7 @@ export default {
 .mz-banner {
   height: 210px;
   img {
+    width: 100%;
     height: 100%;
   }
   .swiper-pagination-bullets{
