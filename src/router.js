@@ -1,24 +1,44 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Film from './views/Film.vue'
-import Cinema from './views/Cinema.vue'
-import Center from './views/Center.vue'
+import Home from './views/Home.vue';
+import City from './views/City.vue';
+import Film from './views/Film.vue';
+import Cinema from './views/Cinema.vue';
+import Center from './views/Center.vue';
 
 Vue.use(VueRouter);
 
 let router = new VueRouter({
   routes: [
     {
-      path: '/films',
-      component: Film
+      path: '/',
+      component: Home,
+      children: [
+        {
+          path: 'films',
+          component: Film
+        },
+        {
+          path: 'cinemas',
+          component: Cinema
+        },
+        {
+          path: 'center',
+          component: Center
+        },
+        {
+          path: '',
+          redirect: '/films'
+        }
+      ]
     },
     {
-      path: '/cinemas',
-      component: Cinema
+      path: '/city',
+      component: City
     },
     {
-      path: '/center',
-      component: Center
+      path: '*',
+      redirect: '/films'
     }
   ]
 })
