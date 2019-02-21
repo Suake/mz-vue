@@ -33,7 +33,9 @@
             align-items: center;
             color: #797d82;
             text-decoration: none;
+            font-size: 10px;
             i{
+                margin-bottom: 6px;
                 font-size: 21px;
             }
             &.router-link-active{
