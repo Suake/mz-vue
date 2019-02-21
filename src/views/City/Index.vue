@@ -1,6 +1,6 @@
 <template>
   <div class="mz-city">
-    <MzHeader title="当前城市-">{{ filterCityData }}</MzHeader>
+    <MzHeader :title="'当前城市-'+ curCityName">{{ filterCityData }}</MzHeader>
     <div class="lv-indexlist">
       <ul class="lv-indexlist__content" id="lv-indexlist__content">
         <div class="recommend-city">
@@ -28,14 +28,15 @@
           v-for="(item, index) in filterCityData"
           :key="index"
           :id="item.py"
-          >
+        >
           <p class="lv-indexsection__index">{{ item.py }}</p>
           <ul>
             <li
               v-for="city in item.list"
               :key="city.cityId"
-              >
-              {{ city.name }}
+              @click="changeCity(city)"
+            >
+            {{ city.name }}
             </li>
           </ul>
         </li>
@@ -43,11 +44,11 @@
       <div class="lv-indexlist__nav">
         <ul>
           <li
-            v-for="(item, index) in filterLetters"
+            v-for="(item,index) in filterLetters"
             :key="index"
-            @click="hh(item)"
-            >
-            {{ item }}
+            @click="gotoLetter(item)"
+          >
+          {{ item }}
           </li>
         </ul>
       </div>
@@ -56,15 +57,54 @@
 </template>
 
 <script>
-import MzHeader from '../../components/MzHeader/Index';
+import MzHeader from '@/components/MzHeader/Index';
+import axios from 'axios';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   components: {
     MzHeader
+  },
+  data () {
+    return {
+    }
+  },
+  computed: {
+    ...mapState([
+      'cityData',
+      'curCityName'
+    ]),
+    ...mapGetters([
+      'filterCityData',
+      'filterLetters'
+    ])
+  },
+  methods: {
+    getCityData () {
+      axios.get('/json/cities.json').then(response => {
+        let res = response.data;
+        if (res.status === 0) {
+          this.$store.commit('chaCityData', res.data.cities);
+        } else {
+          alert(res.msg)
+        }
+      })
+    },
+    gotoLetter (py) {
+      var t = document.getElementById(py).offsetTop;
+      document.getElementById('lv-indexlist__content').scrollTop = t - 48;
+    },
+    changeCity (city) {
+      this.$store.commit('chgCityName', city.name);
+      this.$router.push('/films');
+    }
+  },
+  created () {
+    this.getCityData();
   }
 };
 </script>
 
 <style lang="less">
-@import url("./city.less");
+@import url('./city.less');
 </style>

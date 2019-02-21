@@ -1,7 +1,7 @@
 <template>
     <div>
         <button class="city-fixed" @click="goCity">
-          <span>City</span>
+          <span>{{ curCityName }}</span>
           <i class="iconfont icon-bottom"></i>
         </button>
         <MzBanner></MzBanner>
@@ -23,6 +23,11 @@ export default {
   components: {
     MzBanner,
     MzTabs
+  },
+  computed: {
+    curCityName () {
+      return this.$store.state.curCityName;
+    }
   },
   methods: {
     goCity () {
