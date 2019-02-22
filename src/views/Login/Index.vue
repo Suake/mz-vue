@@ -37,9 +37,13 @@ export default {
         console.log(data);
         if (data.code === 0) {
           sessionStorage.setItem('nickName', data.data.nickName);
-          this.$router.replace({
-            path: this.$route.query.redirect
-          })
+          if (this.$route.query.redirect) {
+            this.$router.replace({
+              path: this.$route.query.redirect
+            })
+          } else {
+            this.$router.push('/fims');
+          }
         } else {
           alert(data.msg)
         }

@@ -1,5 +1,6 @@
 <template>
   <div class="mz-city">
+    <router-link tag="i" to="/films" class="iconfont icon-x"></router-link>
     <MzHeader :title="'当前城市-'+ curCityName">{{ filterCityData }}</MzHeader>
     <div class="lv-indexlist">
       <ul class="lv-indexlist__content" id="lv-indexlist__content">
@@ -15,11 +16,15 @@
           <div class="hot-city">
             <div class="city-index-title">热门城市</div>
             <ul class="city-index-detail">
-              <li class="city-item-detail">
-                <div class="city-item-text">上海</div>
-              </li>
-              <li class="city-item-detail">
-                <div class="city-item-text">天津</div>
+              <li class="city-item-detail"
+                v-for="item in getHotCity"
+                :key="item.cityId"
+              >
+                <div class="city-item-text"
+                  @click="changeCity(item)"
+                >
+                  {{ item.name }}
+                </div>
               </li>
             </ul>
           </div>
@@ -76,7 +81,8 @@ export default {
     ]),
     ...mapGetters([
       'filterCityData',
-      'filterLetters'
+      'filterLetters',
+      'getHotCity'
     ])
   },
   methods: {

@@ -37,6 +37,15 @@ let store = new Vuex.Store({
       return getters.filterCityData.map(item => {
         return item.py;
       })
+    },
+    getHotCity (state) {
+      var hotCity = [];
+      state.cityData.forEach(item => {
+        if (item.isHot) {
+          hotCity.push(item);
+        }
+      })
+      return hotCity;
     }
   },
   mutations: {
