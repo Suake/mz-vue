@@ -30,7 +30,21 @@ let router = new VueRouter({
       children: [
         {
           path: 'films',
-          component: () => import('@/views/Home/Film/Index.vue')
+          component: () => import('@/views/Home/Film/Index.vue'),
+          children: [
+            {
+              path: 'hot',
+              component: () => import('@/components/Hot/Index.vue')
+            },
+            {
+              path: 'fur',
+              component: () => import('@/components/Fur/Index.vue')
+            },
+            {
+              path: '',
+              redirect: 'hot'
+            }
+          ]
         },
         {
           path: 'cinemas',
