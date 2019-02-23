@@ -9,7 +9,7 @@
             <div class="city-index-title">GPS定位你所在城市</div>
             <ul class="city-index-detail">
               <li class="city-item-detail city-item-detail-gprs">
-                <div class="city-item-text">定位失败</div>
+                <div @click="changeCity(gpsCity)" class="city-item-text">{{ gpsCity.name }}</div>
               </li>
             </ul>
           </div>
@@ -63,8 +63,7 @@
 
 <script>
 import MzHeader from '@/components/MzHeader/Index';
-import axios from 'axios';
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
   components: {
@@ -77,7 +76,8 @@ export default {
   computed: {
     ...mapState([
       'cityData',
-      'curCityName'
+      'curCityName',
+      'gpsCity'
     ]),
     ...mapGetters([
       'filterCityData',
@@ -86,22 +86,19 @@ export default {
     ])
   },
   methods: {
-    getCityData () {
-      axios.get('/json/cities.json').then(response => {
-        let res = response.data;
-        if (res.status === 0) {
-          this.$store.commit('chaCityData', res.data.cities);
-        } else {
-          alert(res.msg)
-        }
-      })
-    },
+    ...mapMutations([
+      'chgCityName',
+      'chaCityData'
+    ]),
+    ...mapActions([
+      'getCityData'
+    ]),
     gotoLetter (py) {
       var t = document.getElementById(py).offsetTop;
       document.getElementById('lv-indexlist__content').scrollTop = t - 48;
     },
     changeCity (city) {
-      this.$store.commit('chgCityName', city.name);
+      this.chgCityName(city.name);
       this.$router.push('/films');
     }
   },

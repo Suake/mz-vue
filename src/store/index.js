@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
 let store = new Vuex.Store({
   state: {
-    curCityName: '深圳',
-    cityData: []
+    curCityName: '',
+    cityData: [],
+    gpsCity: {}
   },
   getters: {
     filterCityData (state) {
@@ -54,6 +56,27 @@ let store = new Vuex.Store({
     },
     chaCityData (state, payload) {
       state.cityData = payload;
+    }
+  },
+  actions: {
+    getCityData ({ commit, state, getters }) {
+      axios.get('/json/cities.json').then(response => {
+        let res = response.data;
+        if (res.status === 0) {
+          commit('chaCityData', res.data.cities);
+        } else {
+          alert(res.msg)
+        }
+      })
+    },
+    getGpsCity ({ commit, state }) {
+      /* eslint-disable */
+      var myCity = new BMap.LocalCity();
+      myCity.get(res => {
+        commit('chgCityName', res.name);
+        state.gpsCity = res;
+      })
+      /* eslint-enable */
     }
   }
 })
