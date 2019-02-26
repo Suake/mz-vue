@@ -70,7 +70,7 @@ export default {
     getFilmData () {
       axios
         .get(
-          '/api/gateway', {
+          'https://m.maizuo.com/gateway', {
             params: {
               cityId: 440300,
               pageNum: this.pageNum,
