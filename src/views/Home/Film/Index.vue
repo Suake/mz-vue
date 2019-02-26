@@ -57,6 +57,7 @@ export default {
     border: 0;
     text-align: center;
     padding: 0 5px;
+    outline: none;
     .icon-bottom{
       margin-left: 4px;
       font-size: 8px;
