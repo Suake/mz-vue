@@ -8,7 +8,8 @@ let store = new Vuex.Store({
   state: {
     curCityName: '',
     cityData: [],
-    gpsCity: {}
+    gpsCity: {},
+    filmType: 'hot'
   },
   getters: {
     filterCityData (state) {
@@ -56,6 +57,9 @@ let store = new Vuex.Store({
     },
     chaCityData (state, payload) {
       state.cityData = payload;
+    },
+    chgFilmType (state, payload) {
+      state.filmType = payload;
     }
   },
   actions: {

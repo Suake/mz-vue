@@ -1,0 +1,127 @@
+.nowPlayingList-wrap {
+  background-color: #fff;
+
+  .nowPlayingList {
+    list-style: none;
+    padding: 0;
+    margin-left: 15px;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    .nowPlayingFilm-item{
+      padding: 15px 15px 15px 0;
+      height: 94px;
+      position: relative;
+
+      &::after{
+        content: " ";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 1px;
+        border-bottom: 1px solid #ededed;
+        color: #ededed;
+        -webkit-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+        transform-origin: 0 100%;
+        -webkit-transform: scaleY(.5);
+        -ms-transform: scaleY(.5);
+        transform: scaleY(.5);
+      }
+
+      .nowPlayingFilm-wrap{
+        text-decoration: none;
+        display: flex;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        align-items: center;
+
+        .lazy-img-wrap {
+          border-radius: 2px;
+          position: absolute;
+          overflow: hidden;
+
+          .target-img {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+
+      .nowPlayingFilm-info{
+        width: calc(100% - 116px);
+        padding: 0 10px;
+        box-sizing: border-box;
+        .info-col{
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 100%;
+          span {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+        .name {
+          max-width: calc(100% - 25px);
+          color: #191a1b;
+          font-size: 16px;
+          height: 22px;
+          line-height: 22px;
+          margin-right: 5px;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .item {
+          font-size: 9px;
+          color: #fff;
+          background-color: #d2d6dc;
+          height: 14px;
+          line-height: 14px;
+          padding: 0 2px;
+          border-radius: 2px;
+        }
+        .label {
+          font-size: 13px;
+          margin-top: 4px;
+          color: #797d82;
+        }
+        .grade {
+          color: #ffb232;
+          font-size: 14px;
+        }
+
+      }
+      .nowPlayingFilm-buy {
+        line-height: 25px;
+        height: 25px;
+        width: 50px;
+        color: #ff5f16;
+        font-size: 13px;
+        text-align: center;
+        border-radius: 2px;
+        position: relative;
+        &::after {
+          content: " ";
+          -webkit-transform: scale(.5);
+          -ms-transform: scale(.5);
+          transform: scale(.5);
+          position: absolute;
+          border: 1px solid #ff5f16;
+          top: -50%;
+          right: -50%;
+          bottom: -50%;
+          left: -50%;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}
