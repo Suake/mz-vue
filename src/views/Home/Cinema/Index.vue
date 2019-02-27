@@ -42,7 +42,7 @@
 
 <script>
 import MzHeader from '@/components/MzHeader/Index.vue';
-import axios from 'axios';
+import http from '@/utils/http.js';
 import { mapState } from 'vuex';
 export default {
   components: {
@@ -57,8 +57,8 @@ export default {
     ...mapState(['curCityName'])
   },
   created () {
-    axios
-      .get('http://132.232.204.232:3000/cinema/search', {
+    http
+      .get('/cinema/search', {
         params: {
           pageSize: 10
         }

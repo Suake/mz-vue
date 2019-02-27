@@ -50,7 +50,7 @@
 </style>
 
 <script>
-import axios from 'axios';
+import http from '@/utils/http.js';
 
 export default {
   data () {
@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     getFilmData () {
-      axios
+      http
         .get(
           'https://m.maizuo.com/gateway', {
             params: {

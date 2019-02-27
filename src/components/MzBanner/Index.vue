@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import http from '@/utils/http.js';
 
 export default {
   data () {
@@ -35,7 +35,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://132.232.204.232:3000/banner/search', {
+    http.get('/banner/search', {
       params: {
         pageSize: 10
       }
