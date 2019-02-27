@@ -35,7 +35,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:3000/banner/search', {
+    axios.get('http://132.232.204.232:3000/banner/search', {
       params: {
         pageSize: 10
       }

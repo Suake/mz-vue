@@ -58,7 +58,7 @@ export default {
   },
   created () {
     axios
-      .get('http://localhost:3000/cinema/search', {
+      .get('http://132.232.204.232:3000/cinema/search', {
         params: {
           pageSize: 10
         }
